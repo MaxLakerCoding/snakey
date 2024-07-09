@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
     const cells = document.querySelectorAll('.field_cell');
     const hp_units = document.querySelectorAll('.hp_unit');
-    let snakey = [261, 281, 301];
+    let snakey = [262, 282, 302];
     let direction = 'up';
     let nextDirection = 'up';
     let gameInterval;
@@ -119,6 +119,22 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function setupWalls(mapType) {
+        const map1Walls = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 39, 40, 59, 60, 79, 80, 99, 100, 119, 120, 139, 140, 159, 160, 179, 180, 199, 200, 219, 220, 239, 240, 259, 260, 279, 280, 299, 300, 319, 320, 339, 340, 359, 360, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399];
+        const map2Walls = [0, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 15, 16, 17, 18, 19, 20, 39, 40, 59, 60, 69, 70, 79, 80, 89, 90, 99, 100, 109, 110, 119, 120, 129, 130, 139, 140, 149, 150, 159, 169, 170, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 229, 230, 240, 249, 250, 259, 260, 269, 270, 279, 280, 289, 290, 299, 300, 309, 310, 319, 320, 329, 330, 339, 340, 359, 360, 379, 380, 381, 382, 383, 384, 385, 386, 387, 392, 393, 394, 395, 396, 397, 398, 399];
+
+        let wallsToUse = [];
+        if (mapType === 1) {
+            wallsToUse = map1Walls;
+        } else if (mapType === 2) {
+            wallsToUse = map2Walls;
+        }
+
+        wallsToUse.forEach(index => {
+            cells[index].classList.add('wall_cell');
+        });
+    }
+
     // Функция завершения игры
     function gameOver() {
         document.querySelector('.game-quit').classList.remove('none');
@@ -148,9 +164,12 @@ window.addEventListener('DOMContentLoaded', () => {
         if (gameInterval) {
             clearInterval(gameInterval);
         }
-        snakey = [261, 281, 301];
+        snakey = [262, 282, 302];
         direction = 'up';
         nextDirection = 'up';
+
+        // загрузка карты
+        setupWalls(preferences.map);
 
         // Генерация яблока в начале игры
         generateApple();
