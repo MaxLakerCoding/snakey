@@ -223,6 +223,6 @@ function toast_death(){
     toast("Crashing mode: Death", "Your snake is instantly dies by crashing into itself or walls", 0, 5)
 }
 function toast_cut(){
-    toast('Crashing mode: Cut', "Your snake is cut off when it crashes. You have 3 HP. Crashing into walls kills you instantly", 0, 5)
+    toast('Crashing mode: Cut', "Your snake is cut off when it crashes into itself. You have 3 HP. Crashing into walls kills you instantly", 0, 7)
 }
 

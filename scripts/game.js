@@ -40,7 +40,7 @@ window.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < cells.length; i++) {
             cells[i].classList.remove('snake_cell');
         }
-    
+
         // Обновление индикаторов жизней
         if (hp === 3) {
             hp_units[0].classList.remove('hp_unit_empty');
@@ -55,12 +55,12 @@ window.addEventListener('DOMContentLoaded', () => {
             hp_units[1].classList.add('hp_unit_empty');
             hp_units[2].classList.remove('hp_unit_empty');
         }
-    
+
         let head = snakey[0];
         let newHead;
-    
+
         direction = nextDirection;
-    
+
         // Определение новой позиции головы змейки в зависимости от направления
         if (direction === 'up') {
             newHead = head - 20;
@@ -83,7 +83,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 newHead = preferences.teleport == 0 ? newHead - 20 : head;
             }
         }
-    
+
         // Проверка на столкновение с самой собой
         if (snakey.includes(newHead)) { 
         if (hp === 1) {
@@ -104,25 +104,26 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
         }
-    
+
         // Проверка на столкновение с стеной
         if (cells[newHead].classList.contains('wall_cell')) {   
         gameOver();
         return;
         }
-    
+
         snakey.unshift(newHead);
-    
+
         // Проверка на съедание яблока
         if (snakey[0] === applePosition) {  
         score++;
         document.querySelector('.score').innerHTML = score;
         cells[applePosition].classList.remove('apple_cell');
+        cells[applePosition].classList.remove('apple_anim');
         generateApple();
         } else {    
         snakey.pop();
         }
-    
+
         // Отрисовка змейки на поле
         for (let i = 0; i < snakey.length; i++) {   
         cells[snakey[i]].classList.add('snake_cell');
@@ -210,3 +211,11 @@ window.addEventListener('DOMContentLoaded', () => {
         }, intervalTime);
     };
 });
+
+
+setInterval(()=>{
+    document.querySelector('.apple_cell').classList.add('apple_anim')
+    setTimeout(() => {
+        document.querySelector('.apple_cell').classList.remove('apple_anim')
+    }, 700);
+}, 1400)

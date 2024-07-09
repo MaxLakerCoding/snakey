@@ -25,16 +25,25 @@
     height: 25px;
     background: #000000;
 }
-.snake_cell{
-    background: #ffffff;
-}
 .apple_cell{
-    background: #ff0000;
+    background: url(../img/apple.png);
+    background-color: #000000;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.apple_anim{
+    background: url(../img/apple2.png);
+    background-color: #000000;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 .wall_cell{
     background: url(../img/wall.png);
     background-repeat: no-repeat;
     background-size: contain;
+}
+.snake_cell{
+    background: #ffffff;
 }
 
 .info{
