@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let intervalTime;
     let applePosition;
     let hp;
+    let score = 0;
 
     // Установка количества жизней в зависимости от настроек
     if (preferences.crash == 0) {
@@ -34,11 +35,12 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     // Функция для шага змейки
+// Функция для шага змейки
     function step() {
         for (let i = 0; i < cells.length; i++) {
             cells[i].classList.remove('snake_cell');
         }
-
+    
         // Обновление индикаторов жизней
         if (hp === 3) {
             hp_units[0].classList.remove('hp_unit_empty');
@@ -53,12 +55,12 @@ window.addEventListener('DOMContentLoaded', () => {
             hp_units[1].classList.add('hp_unit_empty');
             hp_units[2].classList.remove('hp_unit_empty');
         }
-
+    
         let head = snakey[0];
         let newHead;
-
+    
         direction = nextDirection;
-
+    
         // Определение новой позиции головы змейки в зависимости от направления
         if (direction === 'up') {
             newHead = head - 20;
@@ -70,54 +72,63 @@ window.addEventListener('DOMContentLoaded', () => {
             if (newHead >= 400) {
                 newHead = preferences.teleport == 0 ? newHead - 400 : 399;
             }
-        } else if (direction === 'left') {
+        } else if (direction === 'left') {  
             newHead = head - 1;
             if (newHead % 20 === 19 || newHead < 0) {
                 newHead = preferences.teleport == 0 ? newHead + 20 : head;
             }
-        } else if (direction === 'right') {
+        } else if (direction === 'right') { 
             newHead = head + 1;
             if (newHead % 20 === 0) {
                 newHead = preferences.teleport == 0 ? newHead - 20 : head;
             }
         }
-
+    
         // Проверка на столкновение с самой собой
-        if (snakey.includes(newHead)) {
-            if (hp === 1) {
-                gameOver();
-                return;
-            } else {
-                hp--;
-                // Удаление последнего элемента, чтобы змейка не исчезала полностью
-                while (snakey.length > 1 && snakey[snakey.length - 1] !== newHead) {
-                    snakey.pop();
-                }
-            }
-        }
-
-        // Проверка на столкновение с стеной
-        if (cells[newHead].classList.contains('wall_cell')) {
+        if (snakey.includes(newHead)) { 
+        if (hp === 1) {
             gameOver();
             return;
-        }
-
-        snakey.unshift(newHead);
-
-        // Проверка на съедание яблока
-        if (snakey[0] === applePosition) {
-            cells[applePosition].classList.remove('apple_cell');
-            snakey.push(snakey[snakey.length - 1]);
-            generateApple();
         } else {
-            snakey.pop();
+            hp--;
+            if (score >= 10) {
+                score -= 10;
+                document.querySelector('.score').innerHTML = score;
+            } else {
+                score = 0;
+                document.querySelector('.score').innerHTML = score;
+            }
+            // Удаление последнего элемента, чтобы змейка не исчезала полностью
+            while (snakey.length > 1 && snakey[snakey.length - 1] !== newHead) {
+                snakey.pop();
+            }
         }
-
+        }
+    
+        // Проверка на столкновение с стеной
+        if (cells[newHead].classList.contains('wall_cell')) {   
+        gameOver();
+        return;
+        }
+    
+        snakey.unshift(newHead);
+    
+        // Проверка на съедание яблока
+        if (snakey[0] === applePosition) {  
+        score++;
+        document.querySelector('.score').innerHTML = score;
+        cells[applePosition].classList.remove('apple_cell');
+        generateApple();
+        } else {    
+        snakey.pop();
+        }
+    
         // Отрисовка змейки на поле
-        for (let i = 0; i < snakey.length; i++) {
-            cells[snakey[i]].classList.add('snake_cell');
+        for (let i = 0; i < snakey.length; i++) {   
+        cells[snakey[i]].classList.add('snake_cell');
         }
     }
+
 
     function setupWalls(mapType) {
         const map1Walls = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 39, 40, 59, 60, 79, 80, 99, 100, 119, 120, 139, 140, 159, 160, 179, 180, 199, 200, 219, 220, 239, 240, 259, 260, 279, 280, 299, 300, 319, 320, 339, 340, 359, 360, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399];
@@ -167,6 +178,7 @@ window.addEventListener('DOMContentLoaded', () => {
         snakey = [262, 282, 302];
         direction = 'up';
         nextDirection = 'up';
+        hp = preferences.crash == 0 ? 1 : 3
 
         // загрузка карты
         setupWalls(preferences.map);
