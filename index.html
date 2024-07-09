@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/game.css">
+</head>
+<body>
+    <section class="menu">
+        <h1 class="color-yellow no-margin no-padding no-select menu-logo" onclick="snakeEasterEgg(), snakeEasterEgg()">
+            Snake
+            <img src="img/snake.svg" class="snake-easter-egg">
+        </h1>
+        <h5 class="no-margin no-padding no-select" style="margin-top: -2vh;">By MaxLakerCoding</h5>
+        <div class="flexbox center menu-buttons">
+            <div class="menubutton-small credit" onmouseenter="githubAnim()" onclick="window.open(`https://github.com/MaxLakerCoding`, '_blank')">
+                <img src="img/github.svg" alt="" class="credit-img">
+            </div>
+            <div class="menubutton-big flexbox center" onmouseenter="playanim()" onclick="gameAnim(), startGame()">
+                <img src="img/play.svg" class="menubutton-img">
+            </div>
+            <img src="img/settings.svg" alt="" class="menubutton-small settings-button" onclick="settingsAnim()">
+        </div>
+    </section>
+
+
+
+    <section class="menu settings">
+        <div class="settingsbox no-select">
+            <div class="flexbox center settings-arg">
+                <h5><strong>Difficulty:</strong></h5>
+                    <div class="flexbox center absolute-right">
+                        <img src="img/arrow-left.svg" class="settings-switcher">
+                        <h5 class="settings-value">Easy</h5>
+                        <img src="img/arrow-right.svg" class="settings-switcher">
+                    </div>
+            </div>
+
+            <div class="flexbox center settings-arg">
+                <h5><strong>Map:</strong></h5>
+                    <div class="flexbox center absolute-right">
+                        <img src="img/arrow-left.svg" class="settings-switcher">
+                        <h5 class="settings-value">Old school</h5>
+                        <img src="img/arrow-right.svg" class="settings-switcher">
+                    </div>
+            </div>
+
+            <div class="flexbox center settings-arg">
+                <h5><strong>Teleports:</strong></h5>
+                    <div class="flexbox center absolute-right">
+                        <img src="img/arrow-left.svg" class="settings-switcher">
+                        <h5 class="settings-value">Enabled</h5>
+                        <img src="img/arrow-right.svg" class="settings-switcher">
+                    </div>
+            </div>
+
+            <div class="flexbox center settings-arg">
+                <h5><strong>Crash:</strong></h5>
+                    <div class="flexbox center absolute-right">
+                        <img src="img/arrow-left.svg" class="settings-switcher">
+                        <h5 class="settings-value">Death</h5>
+                        <img src="img/arrow-right.svg" class="settings-switcher">
+                    </div>
+            </div>
+
+            <div class="flexbox center settings-arg">
+                <h5><strong>Controls:</strong></h5>
+                    <div class="flexbox center absolute-right">
+                        <img src="img/arrow-left.svg" class="settings-switcher">
+                        <h5 class="settings-value">Arrows</h5>
+                        <img src="img/arrow-right.svg" class="settings-switcher">
+                    </div>
+            </div>
+
+            <div class="flexbox center settings-arg">
+                <h5><strong>Snake Skin:</strong></h5>
+                    <div class="flexbox center absolute-right">
+                        <img src="img/arrow-left.svg" class="settings-switcher">
+                        <h2 style="color: #F2AC38;" class="skin">
+                            <span class="skin_odd">■</span>
+                            <span class="skin_even">■</span>
+                            <span class="skin_odd">■</span>
+                        </h2>
+                        <img src="img/arrow-right.svg" class="settings-switcher">
+                    </div>
+            </div>
+        </div>
+        
+        <img src="img/quit.svg" class="settings-quit pointer" onclick="settingsAnim()">
+    </section>
+
+    <section class="menu game game">
+
+        <div class="flexbox info">
+            <h5><strong>Score: </strong><span class="score">0</span></h5>
+            <h4 class="hp">
+                <span class="hp_unit">❤</span>
+                <span class="hp_unit">❤</span>
+                <span class="hp_unit">❤</span>
+            </h4>
+        </div>
+        <div class="field">
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+            <div class="field_cell"></div>
+        </div>
+        <img src="img/quit.svg" class="game-quit pointer none" onclick="exitGame()">
+    </section>
+</body>
+<script src="scripts/toast.js"></script>
+<script src="scripts/visuals.js"></script>
+<script src="scripts/script.js"></script>
+<script src="scripts/game.js"></script>
+</html>
